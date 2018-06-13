@@ -11,29 +11,25 @@ import javax.ws.rs.core.MediaType;
 import com.apenas.ws.rest.vo.Request;
 import com.h2.init.H2Database;
 
-
 @Path("/SolarSystem")
 public class Service {
 
 	@GET
 	@Path("/weatherForDay")
-	//@Consumes({MediaType.APPLICATION_JSON})
 	@Produces(MediaType.APPLICATION_JSON)
-	public Request requestWeather(/*RequestVO request*/ @QueryParam("clima") String clima, @QueryParam("dia") int dia) {
-		
-		Request request =new Request();
-		
+	public Request requestWeather( @QueryParam("clima") String clima,
+			@QueryParam("dia") int dia) {
+
+		Request request = new Request();
+
 		try {
-			request =  H2Database.getweatherForDay(dia);
+			request = H2Database.getweatherForDay(dia);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		return request;
 	}
-	
+
 }
-	
-	
-	
